@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactory1722026"
+		},
+		"adls_link_accountKey": {
+			"value": ""
+		},
+		"adls_link_properties_typeProperties_url": {
+			"value": "https://storageaccountandy1.dfs.core.windows.net/"
+		},
+		"linked_git_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
