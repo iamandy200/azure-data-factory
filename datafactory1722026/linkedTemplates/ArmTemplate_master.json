@@ -11,9 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'adls_link'"
 		},
+		"databricks_linking_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'databricks_linking'"
+		},
 		"adls_link_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://storageaccountandy1.dfs.core.windows.net/"
+		},
+		"databricks_linking_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0217-063347-txo46e1u"
 		},
 		"linked_git_properties_typeProperties_url": {
 			"type": "string",
@@ -49,8 +57,14 @@
 					"adls_link_accountKey": {
 						"value": "[parameters('adls_link_accountKey')]"
 					},
+					"databricks_linking_accessToken": {
+						"value": "[parameters('databricks_linking_accessToken')]"
+					},
 					"adls_link_properties_typeProperties_url": {
 						"value": "[parameters('adls_link_properties_typeProperties_url')]"
+					},
+					"databricks_linking_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('databricks_linking_properties_typeProperties_existingClusterId')]"
 					},
 					"linked_git_properties_typeProperties_url": {
 						"value": "[parameters('linked_git_properties_typeProperties_url')]"

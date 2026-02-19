@@ -8,8 +8,14 @@
 		"adls_link_accountKey": {
 			"value": ""
 		},
+		"databricks_linking_accessToken": {
+			"value": ""
+		},
 		"adls_link_properties_typeProperties_url": {
 			"value": "https://storageaccountandy1.dfs.core.windows.net/"
+		},
+		"databricks_linking_properties_typeProperties_existingClusterId": {
+			"value": "0217-063347-txo46e1u"
 		},
 		"linked_git_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"

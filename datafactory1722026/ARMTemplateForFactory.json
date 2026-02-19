@@ -11,9 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'adls_link'"
 		},
+		"databricks_linking_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'databricks_linking'"
+		},
 		"adls_link_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://storageaccountandy1.dfs.core.windows.net/"
+		},
+		"databricks_linking_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0217-063347-txo46e1u"
 		},
 		"linked_git_properties_typeProperties_url": {
 			"type": "string",
@@ -24,6 +32,42 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/connecting databricks notebook')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/anandofficial200@gmail.com/practice"
+						},
+						"linkedServiceName": {
+							"referenceName": "databricks_linking",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/databricks_linking')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/copy data from github')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -168,6 +212,24 @@
 						"type": "SecureString",
 						"value": "[parameters('adls_link_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/databricks_linking')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7405612190780716.16.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('databricks_linking_accessToken')]"
+					},
+					"existingClusterId": "[parameters('databricks_linking_properties_typeProperties_existingClusterId')]"
 				}
 			},
 			"dependsOn": []
